@@ -1,2 +1,2 @@
 # ifCNVR
- ifCNV R apckage
+ ifCNV R package
