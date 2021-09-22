@@ -13,12 +13,12 @@
 #' readsMatrix = matrix(0,nrow=50,ncol=10)
 #' abSamples(readsMatrix)
 #'
-abSamples <- function(readsMatrix, conta="auto"){
+abSamples <- function(readsMatrix, conta="auto",q=0.99){
   #data <- data.table::fread(readsMatrix,data.table = F)
   data <- readsMatrix
 
-  qq.99 <- apply(data,2,function(x) quantile(x,0.99))
-  qq.01 <- apply(data,2,function(x) quantile(x,0.01))
+  qq.99 <- apply(data,2,function(x) quantile(x,q))
+  qq.01 <- apply(data,2,function(x) quantile(x,1-q))
   m <- apply(data,2,mean)
 
   iso.f <- isolation.forest(data.frame(qq.99/m))
