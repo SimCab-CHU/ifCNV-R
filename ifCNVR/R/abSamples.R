@@ -2,6 +2,7 @@
 #'
 #' @param readsMatrix a matrix of the number of reads per target
 #' @param conta a parameter for the isotree function
+#' @param q quantile
 #'
 #' @return the aberant and normal samples
 #' @export
@@ -10,7 +11,7 @@
 #' @import stats
 #'
 #' @examples
-#' readsMatrix = matrix(0,nrow=50,ncol=10)
+#' readsMatrix = matrix(runif(500),nrow=50,ncol=10)
 #' abSamples(readsMatrix)
 #'
 abSamples <- function(readsMatrix, conta="auto",q=0.99){
@@ -23,11 +24,9 @@ abSamples <- function(readsMatrix, conta="auto",q=0.99){
 
   iso.f <- isolation.forest(data.frame(qq.99/m))
   pred.amp <- predict(iso.f, data.frame(qq.99/m))
-  plot(pred.amp)
 
   iso.f <- isolation.forest(data.frame(qq.01/m))
   pred.del <- predict(iso.f, data.frame(qq.01/m))
-  plot(pred.del)
 
   names(pred.amp) <- names(pred.del) <- colnames(data)
 
@@ -52,6 +51,17 @@ abSamples <- function(readsMatrix, conta="auto",q=0.99){
 
   abSamples <- unique(res.amp,res.del)
   normSamples <- colnames(data)[!colnames(data)%in%abSamples]
+
+  if (is.null(abSamples)){
+    abSamples='None'
+  }
+  if (is.null(normSamples)){
+    normSamples='None'
+  }
+
+  if (abSamples=='None' & normSamples=='None'){
+    print('Not enough variability in data')
+  }
   res = list()
   res[[1]] <- abSamples
   res[[2]] <- normSamples

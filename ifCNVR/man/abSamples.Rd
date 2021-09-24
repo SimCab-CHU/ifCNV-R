@@ -4,12 +4,14 @@
 \alias{abSamples}
 \title{abSamples}
 \usage{
-abSamples(readsMatrix, conta = "auto")
+abSamples(readsMatrix, conta = "auto", q = 0.99)
 }
 \arguments{
 \item{readsMatrix}{a matrix of the number of reads per target}
 
 \item{conta}{a parameter for the isotree function}
+
+\item{q}{quantile}
 }
 \value{
 the aberant and normal samples
@@ -18,7 +20,7 @@ the aberant and normal samples
 abSamples
 }
 \examples{
-readsMatrix = matrix(0,nrow=50,ncol=10)
+readsMatrix = matrix(runif(500),nrow=50,ncol=10)
 abSamples(readsMatrix)
 
 }
