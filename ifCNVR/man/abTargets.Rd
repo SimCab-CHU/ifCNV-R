@@ -4,12 +4,14 @@
 \alias{abTargets}
 \title{abTargets}
 \usage{
-abTargets(readsMatrix, abSamples)
+abTargets(readsMatrix, abSamples, opt = "regular")
 }
 \arguments{
 \item{readsMatrix}{the reads matrix}
 
 \item{abSamples}{the abSamples list result of the abSamples function}
+
+\item{opt}{"regular" or "extensive" a parameter}
 }
 \value{
 a list of dataframes of the targets tagged as outliers
@@ -18,5 +20,5 @@ a list of dataframes of the targets tagged as outliers
 abTargets
 }
 \examples{
-abTargets(0,0)
+abTargets(readsMatrixExample,abSamples(readsMatrixExample))
 }

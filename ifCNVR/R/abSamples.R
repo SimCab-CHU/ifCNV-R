@@ -15,8 +15,8 @@
 #' abSamples(readsMatrix)
 #'
 abSamples <- function(readsMatrix, conta="auto",q=0.99){
-  #data <- data.table::fread(readsMatrix,data.table = F)
-  data <- readsMatrix
+  options(warn=-1)
+  data <- readsMatrix[,-1]
 
   qq.99 <- apply(data,2,function(x) quantile(x,q))
   qq.01 <- apply(data,2,function(x) quantile(x,1-q))
@@ -52,6 +52,10 @@ abSamples <- function(readsMatrix, conta="auto",q=0.99){
   abSamples <- unique(res.amp,res.del)
   normSamples <- colnames(data)[!colnames(data)%in%abSamples]
 
+  if (is.null(abSamples) & is.null(normSamples)){
+    print('Not enough variability in data')
+  }
+
   if (is.null(abSamples)){
     abSamples='None'
   }
@@ -59,9 +63,6 @@ abSamples <- function(readsMatrix, conta="auto",q=0.99){
     normSamples='None'
   }
 
-  if (abSamples=='None' & normSamples=='None'){
-    print('Not enough variability in data')
-  }
   res = list()
   res[[1]] <- abSamples
   res[[2]] <- normSamples
