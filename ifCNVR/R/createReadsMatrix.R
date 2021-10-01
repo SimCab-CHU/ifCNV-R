@@ -9,10 +9,10 @@
 #' @export
 #'
 #' @examples
-#'bamPath <- "./inst/extdata/"
-#'bed <- "./inst/bedFile.bed"
+#'bamPath <- "/Users/admin/Documents/GitHub/ifCNVR/ifCNVR/inst/extdata/"
+#'bed <- "/Users/admin/Documents/GitHub/ifCNVR/ifCNVR/inst/bedFile.bed"
 #'bedtools <- "/Users/admin/miniconda3/bin/bedtools"
-#'readsMatrix <- CreateReadsMatrix(bamPath, bedFile, bedtools)
+#'readsMatrix <- CreateReadsMatrix(bamPath, bed, bedtools)
 #'
 CreateReadsMatrix <- function(bamPath, bedFile, bedtools, outputFile='n'){
   bams <- dir(bamPath)
