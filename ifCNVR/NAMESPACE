@@ -3,6 +3,7 @@
 export(CreateReadsMatrix)
 export(abSamples)
 export(abTargets)
+export(calculateRatio)
 export(normalizeReads)
 export(scoring)
 import(data.table)
