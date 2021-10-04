@@ -4,14 +4,16 @@
 \alias{calculateRatio}
 \title{calculate Ratio}
 \usage{
-calculateRatio(abTargets, readsMatrix, abSamples)
+calculateRatio(readsMatrix, abSamples, roi, soi)
 }
 \arguments{
-\item{abTargets}{a list of dataframes of the targets tagged as outliers result of the abTargets() function}
-
 \item{readsMatrix}{the reads matrix}
 
 \item{abSamples}{the abSamples list result of the abSamples function}
+
+\item{roi}{the region of interest}
+
+\item{soi}{the sample of interest}
 }
 \value{
 the ratio associated with the abTargets
@@ -20,6 +22,5 @@ the ratio associated with the abTargets
 calculate Ratio
 }
 \examples{
-calculateRatio(abTargets(readsMatrixExample,abSamples(readsMatrixExample)), readsMatrixExample,
-abSamples(readsMatrixExample))
+calculateRatio(readsMatrixExample, abSamples(readsMatrixExample), "EGFR-Ex20", "sample_2")
 }
