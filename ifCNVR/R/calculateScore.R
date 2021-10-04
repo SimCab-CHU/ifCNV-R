@@ -50,5 +50,6 @@ calculateScore <- function(abTargets, bedFile, roi="Gene-Exon", sep="-", column=
   }
   res <- data.frame(f)
   colnames(res) <- c("samples","RoI","Score")
+  res <- res[res$Score>0,]
   return(res)
 }
