@@ -12,7 +12,7 @@
 #' @examples
 #' bed <- "/Users/admin/Documents/GitHub/ifCNVR/ifCNVR/inst/bedFile.bed"
 #' calculateScore(abTargets(readsMatrixExample,abSamples(readsMatrixExample)), bed)
-calculateScore <- function(abTargets, bedFile, roi="Gene-Exon", sep="-", column=4){
+calculateScore <- function(abTargets, bedFile, roi="Gene-Exon", sep="-", column=4, thrScore=0){
   bed <- fread(bedFile, data.table = F)
   N <- nrow(bed)
 
@@ -50,6 +50,7 @@ calculateScore <- function(abTargets, bedFile, roi="Gene-Exon", sep="-", column=
   }
   res <- data.frame(f)
   colnames(res) <- c("samples","RoI","Score")
-  res <- res[res$Score>0,]
+  res <- res[res$Score>thrScore,]
+
   return(res)
 }

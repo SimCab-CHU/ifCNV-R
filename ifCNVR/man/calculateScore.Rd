@@ -4,7 +4,14 @@
 \alias{calculateScore}
 \title{calculate Score}
 \usage{
-calculateScore(abTargets, bedFile, roi = "Gene-Exon", sep = "-", column = 4)
+calculateScore(
+  abTargets,
+  bedFile,
+  roi = "Gene-Exon",
+  sep = "-",
+  column = 4,
+  thrScore = 0
+)
 }
 \arguments{
 \item{abTargets}{a list of dataframes of the targets tagged as outliers result of the abTargets() function}
