@@ -5,6 +5,7 @@
 #' @param roi the region of interest (Gene or Gene-Exon)
 #' @param sep a character the separator between roi in the bed file
 #' @param column the column of the bed file with the roi
+#' @param thrScore (default 0) a threshold on the localization score
 #'
 #' @return the score associated with the abSamples in the desired roi
 #' @export
