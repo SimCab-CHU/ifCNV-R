@@ -14,11 +14,7 @@ library(data.table)
 library(knitr)
 library(DT)
 
-res = fread("/home/scabello/Documents/CNV/CNV_Juno_all_Run19_Juno.tsv",data.table = F)
-res = res[order(res$score,decreasing = T),]
-res = res[res$score>10,]
-res$ratio = round(res$ratio,digits=1)
-res$score = round(res$score,digits=1)
+
 DT::datatable(res, rownames = FALSE)
 ```
 
