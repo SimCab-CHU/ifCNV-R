@@ -23,6 +23,8 @@ calculateScore(
 \item{sep}{a character the separator between roi in the bed file}
 
 \item{column}{the column of the bed file with the roi}
+
+\item{thrScore}{(default 0) a threshold on the localization score}
 }
 \value{
 the score associated with the abSamples in the desired roi

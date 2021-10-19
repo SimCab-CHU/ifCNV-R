@@ -14,8 +14,7 @@ library(data.table)
 library(knitr)
 library(DT)
 
-
-DT::datatable(res, rownames = FALSE)
+DT::datatable(resTable, rownames = FALSE)
 ```
 
 ## Plots
@@ -24,84 +23,17 @@ You can also embed plots, for example:
 
 ```{r , echo=FALSE}
 
-library(data.table)
-library(isotree)
-abSamples <- function(readsMatrix, conta="auto",q=0.99){
-  #data <- data.table::fread(readsMatrix,data.table = F)
-  data <- readsMatrix
 
-  qq.99 <- apply(data,2,function(x) quantile(x,q))
-  qq.01 <- apply(data,2,function(x) quantile(x,1-q))
-  m <- apply(data,2,mean)
+data <- readsMatrix
 
-  iso.f <- isolation.forest(data.frame(qq.99/m))
-  pred.amp <- predict(iso.f, data.frame(qq.99/m))
+amp <- data[,1]
 
-  iso.f <- isolation.forest(data.frame(qq.01/m))
-  pred.del <- predict(iso.f, data.frame(qq.01/m))
+data <- data[,-1]
 
-  names(pred.amp) <- names(pred.del) <- colnames(data)
+nam <- paste(do.call(rbind,strsplit(amp,split = "-"))[,1],do.call(rbind,strsplit(amp,split = "-"))[,2],sep="-")
+tmp <- do.call(rbind,strsplit(amp,split = "-"))[,1]
 
-  if (conta=='None'){
-    res.amp <- colnames(data)[which(pred.amp==max(pred.amp))]
-    res.del <- colnames(data)[which(pred.del==max(pred.del))]
-  }
-  if (conta=='auto'){
-    res.amp <- colnames(data)[which(pred.amp>(mean(pred.amp)+sd(pred.amp)))]
-    res.del <- colnames(data)[which(pred.amp>(mean(pred.del)+sd(pred.del)))]
-  }
-  if (is.numeric(conta)){
-    n = round(dim(data)[2]*conta)
-    if (n==0){
-      n=1
-    }
-    tmp = sort(pred.amp,decreasing = T)
-    res.amp <- names(tmp[1:n])
-    tmp = sort(pred.del,decreasing = T)
-    res.del <- names(tmp[1:n])
-  }
-
-  abSamples <- unique(res.amp,res.del)
-  normSamples <- colnames(data)[!colnames(data)%in%abSamples]
-
-  if (is.null(abSamples)){
-    abSamples='None'
-  }
-  if (is.null(normSamples)){
-    normSamples='None'
-  }
-  
-  if (length(abSamples)==1 & length(normSamples)==1){
-    if (abSamples=='None' & normSamples=='None'){
-      print('Not enough variability in data')
-    }
-  }
-
-
-  res = list()
-  res[[1]] <- abSamples
-  res[[2]] <- normSamples
-
-  names(res) = c("abSamples","normSamples")
-  return(res)
-}
-
-data =fread("/home/scabello/Documents/CNV/reads_run19.tsv",data.table = F)
-
-amp=data$V1
-
-data = data[,-1]
-#data=data[order(amp),]
-#amp=sort(amp)
-
-nam = paste(do.call(rbind,strsplit(amp,split = "_"))[,1],do.call(rbind,strsplit(amp,split = "_"))[,2],sep="_")
-
-res = fread("/home/scabello/Documents/CNV/CNV_Juno_all_Run19_Juno.tsv",data.table = F)
-res = res[order(res$score,decreasing = T),]
-res = res[res$score>10,]
-
-tmp = do.call(rbind,strsplit(amp,split = "_"))[,1]
-
+res <- resTable
 
 vlines=NULL
 for (i in 1:(length(tmp)-1)){
@@ -110,18 +42,18 @@ for (i in 1:(length(tmp)-1)){
   }
 }
 
-samples = abSamples(data)
+samples <- CNVpos
 
-data.norm = apply(data,2,function(x) x/median(x)) # fonction normalisation
+data.norm <- apply(data,2,function(x) x/median(x)) # fonction normalisation
 
 m.norm = rowMeans(data.norm[,samples$normSamples])
 
-soi = res$name
+soi = res$samples
+
 
 for (i in unique(soi)){
-  goi = res$gene[res$name==i]
+  goi = res$RoI[res$samples==i]
   for (j in goi){
-    #print(j)
     cr = rep("black",length(nam))
     cr[abs(log2(data.norm[,i]/m.norm))>1] = "gray35"
     cr[grepl(j,nam)] = "red"

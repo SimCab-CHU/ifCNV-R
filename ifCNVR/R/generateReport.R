@@ -1,17 +1,15 @@
 #' generateReport
 #'
-#' @param readsMatrix
-#' @param abSamples
-#' @param resTable
-#' @param thrScore
+#' @param outputFile
 #'
+#' @importFrom rmarkdown render
 #' @return
 #' @export
 #'
 #' @examples
-generateReport <- function(readsMatrix, abSamples, resTable, thrScore=0){
-
-
-
-
+#'generateReport()
+generateReport <- function(outputFile='n'){
+  if (outputFile!='n'){
+    render("inst/template.Rmd",output_file = outputFile)
+  }
 }
