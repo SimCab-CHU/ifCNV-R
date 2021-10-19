@@ -7,10 +7,10 @@
 generateReport(outputFile = "n")
 }
 \arguments{
-\item{outputFile}{}
+\item{outputFile}{a path to the html output file}
 }
 \value{
-
+a html report
 }
 \description{
 generateReport

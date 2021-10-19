@@ -15,6 +15,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports: 
     data.table,
+    rmarkdown,
     isotree
 Depends: 
     R (>= 2.10)

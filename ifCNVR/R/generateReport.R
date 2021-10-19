@@ -1,9 +1,10 @@
 #' generateReport
 #'
-#' @param outputFile
+#' @param outputFile a path to the html output file
 #'
-#' @importFrom rmarkdown render
-#' @return
+#' @import rmarkdown
+#'
+#' @return a html report
 #' @export
 #'
 #' @examples
@@ -11,5 +12,7 @@
 generateReport <- function(outputFile='n'){
   if (outputFile!='n'){
     render("inst/template.Rmd",output_file = outputFile)
+  } else {
+    cat("An output file path is needed.")
   }
 }
