@@ -8,7 +8,7 @@ calculateScore(
   abTargets,
   bedFile,
   roi = "Gene-Exon",
-  sep = "-",
+  sep = "_",
   column = 4,
   thrScore = 0
 )

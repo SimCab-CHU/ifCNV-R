@@ -13,13 +13,14 @@
 #' @examples
 #' bed <- "/Users/admin/Documents/GitHub/ifCNVR/ifCNVR/inst/bedFile.bed"
 #' calculateScore(abTargets(readsMatrixExample,abSamples(readsMatrixExample)), bed)
-calculateScore <- function(abTargets, bedFile, roi="Gene-Exon", sep="-", column=4, thrScore=0){
-  bed <- fread(bedFile, data.table = F)
+calculateScore <- function(abTargets, bedFile, roi="Gene-Exon", sep="_", column=4, thrScore=0){
+  bed <- fread(bedFile, data.table = F,header = T)
   N <- nrow(bed)
 
   bed.sub <- bed[,column]
 
   All <- do.call(rbind, strsplit(bed.sub,split = sep))
+  print(All)
   genes <- All[,1]
   exons <- All[,2]
 
