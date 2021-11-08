@@ -3,8 +3,8 @@
  
  # Installation
  
- To install ifCNVR with type:
+ To install ifCNVR type:
  
- ```R
+ `
 devtools::install_github("https://github.com/SimCab-CHU/ifCNVR",subdir = "ifCNVR")
-```
+`
