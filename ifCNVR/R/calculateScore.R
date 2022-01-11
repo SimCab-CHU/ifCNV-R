@@ -56,9 +56,12 @@ calculateScore <- function(readsMatrix, abSamples, abTargets, roi="Gene", sep="_
     ratio <- c(ratio, calculateRatio(readsMatrix, abSamples, roi = f[i,2], soi = f[i,1]))
   }
 
-  res <- data.frame(f[,1:2],ratio,f[,3])
+  res <- data.frame(f[,1:2],as.numeric(ratio),as.numeric(f[,3]))
   colnames(res) <- c("samples","RoI","Ratio","Score")
+  res$Ratio <- round(res$Ratio,2)
+  res$Score <- round(res$Score,2)
   res <- res[as.numeric(res$Score)>thrScore,]
+  print(res)
 
   return(res)
 }
