@@ -34,7 +34,7 @@ CNVpos <- abSamples(readsMatrix)
 CNVtar <- abTargets(readsMatrix, CNVpos)
 
 # Create the results table
-resTable <- calculateScore(readsMatrix, CNVpos, CNVtar, thrScore = 7)
+resTable <- calculateScore(readsMatrix, CNVpos, CNVtar)
 
 # Generate the html report
 generateReport(outputFile = outputPath, readsMatrix, resTable, CNVpos)
