@@ -1,7 +1,7 @@
 #' CreateReadsMatrix
 #'
 #' @param bamPath a path leading to the .bam and .bai files
-#' @param bedFile a path leading to the .bed file
+#' @param bedFile a path leading to the .bed file (Warning replace chrX by X in the position)
 #' @param outputFile (optional) a path leading to a text file
 #' @param bedtools the path leading to bedtools
 #'
@@ -9,12 +9,13 @@
 #' @export
 #'
 #' @examples
-#'bamPath <- "/Users/admin/Documents/GitHub/ifCNVR/ifCNVR/inst/extdata/"
-#'bed <- "/Users/admin/Documents/GitHub/ifCNVR/ifCNVR/inst/bedFile.bed"
-#'bedtools <- "/Users/admin/miniconda3/bin/bedtools"
+#'bamPath <- system.file("extdata/",package = "ifCNVR")
+#'bed <- system.file("bedFile.bed",package = "ifCNVR")
+#'bedtools <- 'n'
 #'readsMatrix <- CreateReadsMatrix(bamPath, bed, bedtools)
 #'
 CreateReadsMatrix <- function(bamPath, bedFile, bedtools, outputFile='n'){
+  options(warn=-1)
   bams <- dir(bamPath)
   bed <- fread(bedFile, data.table = F)
 
@@ -25,7 +26,9 @@ CreateReadsMatrix <- function(bamPath, bedFile, bedtools, outputFile='n'){
     stop('bamPath must contain .bam files and the correspondant index files (.bai)')
   }
   cat("Creating Reads Matrix\n")
-  readsMatrix <- system(paste(bedtools, "multicov -bed", bedFile, paste0("-bams ", bamPath, "/", "*.bam")),intern=TRUE)
+  if (bedtools != 'n'){
+    readsMatrix <- system(paste(bedtools, "multicov -bed", bedFile, paste0("-bams ", bamPath, "/", "*.bam")),intern=TRUE)
+  }
 
   bams <- bams[grepl(".bam$",bams)]
   samples <- unique(unlist(strsplit(bams, split = ".bam", fixed=TRUE)))
