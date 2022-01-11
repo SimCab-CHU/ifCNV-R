@@ -17,13 +17,15 @@
 CreateReadsMatrix <- function(bamPath, bedFile, bedtoolsPath, outputFile='n'){
   options(warn=-1)
   bams <- dir(bamPath)
-  bams <- bams[grepl(".bam$",bams)]
-  samples <- unique(unlist(strsplit(bams, split = ".bam", fixed=TRUE)))
   bed <- fread(bedFile, data.table = F)
 
   if (sum(grepl(".bam$",bams))==0 & sum(grepl(".cram$",bams))==0){
     stop('bamPath must contain .bam or.cram files')
   }
+  print(bams)
+  print(sum(grepl(".bam$",bams)))
+  print(sum(grepl(".bai$",bams)))
+
   if (sum(grepl(".bam$",bams))!=sum(grepl(".bai$",bams))){
     stop('bamPath must contain .bam files and the correspondant index files (.bai)')
   }
@@ -33,6 +35,8 @@ CreateReadsMatrix <- function(bamPath, bedFile, bedtoolsPath, outputFile='n'){
       readsMatrix <- system(paste(bedtoolsPath, "multicov -bed", bedFile, paste0("-bams ", bamPath, "/", "*.bam")),intern=TRUE)
       tmp <- do.call(rbind,strsplit(readsMatrix, split="\t" ,fixed = TRUE))
       readsMatrix <- data.frame(tmp[,4], tmp[,(ncol(bed)+1):ncol(tmp)])
+      bams <- bams[grepl(".bam$",bams)]
+      samples <- unique(unlist(strsplit(bams, split = ".bam", fixed=TRUE)))
       colnames(readsMatrix) <- c("targets",samples)
     } else {
       stop('bedtoolsPath must be the path to bedtools (after installing bedtools, type which bedtools in your console)')
