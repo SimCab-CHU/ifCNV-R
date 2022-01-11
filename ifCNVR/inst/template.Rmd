@@ -23,15 +23,11 @@ DT::datatable(resTable, rownames = FALSE)
 
 
 data <- readsMatrix
-
 amp <- data[,1]
-
 data <- data[,-1]
 
 nam <- paste(do.call(rbind,strsplit(amp,split = "_"))[,1],do.call(rbind,strsplit(amp,split = "_"))[,2],sep="-")
 tmp <- do.call(rbind,strsplit(amp,split = "_"))[,1]
-
-res <- resTable
 
 vlines=NULL
 for (i in 1:(length(tmp)-1)){
@@ -40,25 +36,20 @@ for (i in 1:(length(tmp)-1)){
   }
 }
 
-samples <- CNVpos
+m.norm = rowMeans(data[,CNVpos$normSamples])
 
-data.norm <- apply(data.matrix(data),2,function(x) x/median(x)) # fonction normalisation
-
-m.norm = rowMeans(data.norm[,samples$normSamples])
-
-soi = res$samples
-
+soi = resTable$samples
 
 for (i in unique(soi)){
-  goi = res$RoI[res$samples==i]
+  goi = resTable$RoI[res$samples==i]
   for (j in goi){
     cr = rep("black",length(nam))
-    cr[abs(log2(data.norm[,i]/m.norm))>1] = "gray35"
+    cr[abs(log2(data[,i]/m.norm))>1] = "gray35"
     cr[grepl(j,nam)] = "red"
-    plot(log2(data.norm[,i]/m.norm),xaxt='n',xlab=NA,ylab="log ratio",pch=20,main=paste(i, "-", j))
+    plot(log2(data[,i]/m.norm),xaxt='n',xlab=NA,ylab="log ratio",pch=20,main=paste(i, "-", j))
     axis(1, at=1:nrow(data), labels=nam,las=2,cex.axis=0.5) 
     abline(v=vlines,col='gray')
-    points(log2(data.norm[,i]/m.norm),col=cr,pch=20,cex=1.01)
+    points(log2(data[,i]/m.norm),col=cr,pch=20,cex=1.01)
     abline(h=1,lty=2)
     abline(h=-1,lty=2)
   }

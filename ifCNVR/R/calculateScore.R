@@ -3,10 +3,8 @@
 #' @param readsMatrix a reads matrix with samples in columns and targets in lines (the first column are the targets)
 #' @param abSamples the abSamples list result of the abSamples function
 #' @param abTargets a list of dataframes of the targets tagged as outliers result of the abTargets() function
-#' @param bedFile a path leading to the .bed file
 #' @param roi the region of interest (Gene or Gene-Exon)
 #' @param sep a character the separator between roi in the bed file
-#' @param column the column of the bed file with the roi
 #' @param thrScore (default 0) a threshold on the localization score
 #'
 #' @return the score associated with the abSamples in the desired roi
@@ -17,11 +15,9 @@
 #' abS <- abSamples(readsMatrixExample)
 #' abT <- abTargets(readsMatrixExample,abSamples(readsMatrixExample))
 #' calculateScore(readsMatrixExample, abS, abT, bed)
-calculateScore <- function(readsMatrix, abSamples, abTargets, bedFile, roi="Gene", sep="_", column=4, thrScore=0){
-  bed <- fread(bedFile, data.table = F,header = T)
-  N <- nrow(bed)
-
-  bed.sub <- bed[,column]
+calculateScore <- function(readsMatrix, abSamples, abTargets, roi="Gene", sep="_", thrScore=10){
+  N <- nrow(readsMatrix)
+  bed.sub <- readsMatrix[,1]
 
   All <- do.call(rbind, strsplit(bed.sub,split = sep))
 
@@ -60,8 +56,8 @@ calculateScore <- function(readsMatrix, abSamples, abTargets, bedFile, roi="Gene
     ratio <- c(ratio, calculateRatio(readsMatrix, abSamples, roi = f[i,2], soi = f[i,1]))
   }
 
-  res <- data.frame(f,ratio)
-  colnames(res) <- c("samples","RoI","Score","Ratio")
+  res <- data.frame(f[,1:2],ratio,f[,3])
+  colnames(res) <- c("samples","RoI","Ratio","Score")
   res <- res[as.numeric(res$Score)>thrScore,]
 
   return(res)

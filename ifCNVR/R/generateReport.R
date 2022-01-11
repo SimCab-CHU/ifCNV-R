@@ -10,9 +10,10 @@
 #'
 #' @examples
 #'generateReport()
-generateReport <- function(outputFile='n', resTable){
+generateReport <- function(outputFile='n', readsMtrix, resTable, CNVpos){
   if (outputFile!='n'){
-    render("inst/template.Rmd",output_file = outputFile)
+    template <- system.file("template.Rmd", package = "ifCNVR")
+    render(template, output_file = outputFile)
   } else {
     cat("An output file path is needed.")
   }
