@@ -1,6 +1,7 @@
 #' generateReport
 #'
 #' @param outputFile a path to the html output file
+#' @param resTable the table result of the CalculateScore() function
 #'
 #' @import rmarkdown
 #'

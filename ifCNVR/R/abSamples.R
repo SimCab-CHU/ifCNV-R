@@ -11,7 +11,7 @@
 #' @import stats
 #'
 #' @examples
-#' readsMatrix = matrix(runif(500),nrow=50,ncol=10)
+#' readsMatrix = data.frame(targets=paste0("target_",seq(1,50)), matrix(runif(500),nrow=50,ncol=10))
 #' abSamples(readsMatrix)
 #'
 abSamples <- function(readsMatrix, conta="auto",q=0.99){

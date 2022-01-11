@@ -1,5 +1,7 @@
 #' calculate Score
 #'
+#' @param readsMatrix a reads matrix with samples in columns and targets in lines (the first column are the targets)
+#' @param abSamples the abSamples list result of the abSamples function
 #' @param abTargets a list of dataframes of the targets tagged as outliers result of the abTargets() function
 #' @param bedFile a path leading to the .bed file
 #' @param roi the region of interest (Gene or Gene-Exon)
@@ -11,8 +13,10 @@
 #' @export
 #'
 #' @examples
-#' bed <- "/Users/admin/Documents/GitHub/ifCNVR/ifCNVR/inst/bedFile.bed"
-#' calculateScore(abTargets(readsMatrixExample,abSamples(readsMatrixExample)), bed)
+#' bed <- system.file("bedFile.bed",package = 'ifCNVR')
+#' abS <- abSamples(readsMatrixExample)
+#' abT <- abTargets(readsMatrixExample,abSamples(readsMatrixExample))
+#' calculateScore(readsMatrixExample, abS, abT, bed)
 calculateScore <- function(readsMatrix, abSamples, abTargets, bedFile, roi="Gene", sep="_", column=4, thrScore=0){
   bed <- fread(bedFile, data.table = F,header = T)
   N <- nrow(bed)

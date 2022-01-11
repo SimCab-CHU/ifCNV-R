@@ -27,7 +27,7 @@ abTargets <- function(readsMatrix, abSamples, opt='regular'){
   q <- 0
   for (i in toTest){
     res.amp <- NULL
-    tmp = log2(normReads[,i]/n.norm)
+    tmp = normReads[,i]/n.norm
     iso.f <- isolation.forest(data.frame(tmp))
     pred.amp <- predict(iso.f, data.frame(tmp))
     res.amp <- readsMatrix[,1][which(pred.amp>0.6)]

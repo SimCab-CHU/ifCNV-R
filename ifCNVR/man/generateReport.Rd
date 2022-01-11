@@ -4,10 +4,12 @@
 \alias{generateReport}
 \title{generateReport}
 \usage{
-generateReport(outputFile = "n")
+generateReport(outputFile = "n", resTable)
 }
 \arguments{
 \item{outputFile}{a path to the html output file}
+
+\item{resTable}{the table result of the CalculateScore() function}
 }
 \value{
 a html report

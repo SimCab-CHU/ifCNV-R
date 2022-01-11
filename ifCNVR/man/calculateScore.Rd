@@ -5,15 +5,21 @@
 \title{calculate Score}
 \usage{
 calculateScore(
+  readsMatrix,
+  abSamples,
   abTargets,
   bedFile,
-  roi = "Gene-Exon",
+  roi = "Gene",
   sep = "_",
   column = 4,
   thrScore = 0
 )
 }
 \arguments{
+\item{readsMatrix}{a reads matrix with samples in columns and targets in lines (the first column are the targets)}
+
+\item{abSamples}{the abSamples list result of the abSamples function}
+
 \item{abTargets}{a list of dataframes of the targets tagged as outliers result of the abTargets() function}
 
 \item{bedFile}{a path leading to the .bed file}
@@ -33,6 +39,8 @@ the score associated with the abSamples in the desired roi
 calculate Score
 }
 \examples{
-bed <- "/Users/admin/Documents/GitHub/ifCNVR/ifCNVR/inst/bedFile.bed"
-calculateScore(abTargets(readsMatrixExample,abSamples(readsMatrixExample)), bed)
+bed <- system.file("bedFile.bed",package = 'ifCNVR')
+abS <- abSamples(readsMatrixExample)
+abT <- abTargets(readsMatrixExample,abSamples(readsMatrixExample))
+calculateScore(readsMatrixExample, abS, abT, bed)
 }
