@@ -14,7 +14,7 @@
 #' abS <- abSamples(readsMatrixExample)
 #' abT <- abTargets(readsMatrixExample,abSamples(readsMatrixExample))
 #' calculateScore(readsMatrixExample, abS, abT, sep="-")
-calculateScore <- function(readsMatrix, abSamples, abTargets, roi="Gene", sep="_", thrScore=10){
+calculateScore <- function(readsMatrix, abSamples, abTargets, roi="Gene", sep="_", thrScore=7){
   N <- nrow(readsMatrix)
   bed.sub <- readsMatrix[,1]
 
