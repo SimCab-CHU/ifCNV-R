@@ -10,7 +10,7 @@ calculateScore(
   abTargets,
   roi = "Gene",
   sep = "_",
-  thrScore = 10
+  thrScore = 7
 )
 }
 \arguments{

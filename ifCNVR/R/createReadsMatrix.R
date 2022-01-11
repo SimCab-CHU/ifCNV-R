@@ -17,6 +17,8 @@
 CreateReadsMatrix <- function(bamPath, bedFile, bedtoolsPath, outputFile='n'){
   options(warn=-1)
   bams <- dir(bamPath)
+  bams <- bams[grepl(".bam$",bams)]
+  samples <- unique(unlist(strsplit(bams, split = ".bam", fixed=TRUE)))
   bed <- fread(bedFile, data.table = F)
 
   if (sum(grepl(".bam$",bams))==0 & sum(grepl(".cram$",bams))==0){
@@ -38,10 +40,6 @@ CreateReadsMatrix <- function(bamPath, bedFile, bedtoolsPath, outputFile='n'){
   } else {
     readsMatrix <- NULL
   }
-
-  bams <- bams[grepl(".bam$",bams)]
-  samples <- unique(unlist(strsplit(bams, split = ".bam", fixed=TRUE)))
-
 
   if (outputFile!='n'){
     fwrite(readsMatrix,outputFile,sep="\t")
