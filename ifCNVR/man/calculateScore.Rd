@@ -8,11 +8,9 @@ calculateScore(
   readsMatrix,
   abSamples,
   abTargets,
-  bedFile,
   roi = "Gene",
   sep = "_",
-  column = 4,
-  thrScore = 0
+  thrScore = 10
 )
 }
 \arguments{
@@ -22,13 +20,9 @@ calculateScore(
 
 \item{abTargets}{a list of dataframes of the targets tagged as outliers result of the abTargets() function}
 
-\item{bedFile}{a path leading to the .bed file}
-
 \item{roi}{the region of interest (Gene or Gene-Exon)}
 
 \item{sep}{a character the separator between roi in the bed file}
-
-\item{column}{the column of the bed file with the roi}
 
 \item{thrScore}{(default 0) a threshold on the localization score}
 }
@@ -39,8 +33,7 @@ the score associated with the abSamples in the desired roi
 calculate Score
 }
 \examples{
-bed <- system.file("bedFile.bed",package = 'ifCNVR')
 abS <- abSamples(readsMatrixExample)
 abT <- abTargets(readsMatrixExample,abSamples(readsMatrixExample))
-calculateScore(readsMatrixExample, abS, abT, bed)
+calculateScore(readsMatrixExample, abS, abT, sep="-")
 }

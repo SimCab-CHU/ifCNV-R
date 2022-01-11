@@ -2,6 +2,8 @@
 #'
 #' @param outputFile a path to the html output file
 #' @param resTable the table result of the CalculateScore() function
+#' @param readsMatrix the reads matrix
+#' @param CNVpos the CNVpos list result of the abSamples function
 #'
 #' @import rmarkdown
 #'
@@ -10,7 +12,7 @@
 #'
 #' @examples
 #'generateReport()
-generateReport <- function(outputFile='n', readsMtrix, resTable, CNVpos){
+generateReport <- function(outputFile='n', readsMatrix, resTable, CNVpos){
   if (outputFile!='n'){
     template <- system.file("template.Rmd", package = "ifCNVR")
     render(template, output_file = outputFile)

@@ -11,10 +11,9 @@
 #' @export
 #'
 #' @examples
-#' bed <- system.file("bedFile.bed",package = 'ifCNVR')
 #' abS <- abSamples(readsMatrixExample)
 #' abT <- abTargets(readsMatrixExample,abSamples(readsMatrixExample))
-#' calculateScore(readsMatrixExample, abS, abT, bed)
+#' calculateScore(readsMatrixExample, abS, abT, sep="-")
 calculateScore <- function(readsMatrix, abSamples, abTargets, roi="Gene", sep="_", thrScore=10){
   N <- nrow(readsMatrix)
   bed.sub <- readsMatrix[,1]
@@ -51,17 +50,28 @@ calculateScore <- function(readsMatrix, abSamples, abTargets, roi="Gene", sep="_
     }
   }
 
-  ratio <- NULL
-  for (i in seq(1,nrow(f))){
-    ratio <- c(ratio, calculateRatio(readsMatrix, abSamples, roi = f[i,2], soi = f[i,1]))
+  if (!is.null(f)){
+    ratio <- NULL
+    for (i in seq(1,nrow(f))){
+      ratio <- c(ratio, calculateRatio(readsMatrix, abSamples, roi = f[i,2], soi = f[i,1]))
+    }
+
+    if (nrow(f)==1){
+      res <- data.frame(f[1],f[2],as.numeric(ratio),as.numeric(f[3]))
+      print(res)
+    } else {
+      res <- data.frame(f[,1:2],as.numeric(ratio),as.numeric(f[,3]))
+    }
+
+    colnames(res) <- c("samples","RoI","Ratio","Score")
+    res$Ratio <- round(res$Ratio,2)
+    res$Score <- round(res$Score,2)
+    res <- res[as.numeric(res$Score)>thrScore,]
+    print(res)
+
+    return(res)
+  } else {
+    return(NULL)
   }
 
-  res <- data.frame(f[,1:2],as.numeric(ratio),as.numeric(f[,3]))
-  colnames(res) <- c("samples","RoI","Ratio","Score")
-  res$Ratio <- round(res$Ratio,2)
-  res$Score <- round(res$Score,2)
-  res <- res[as.numeric(res$Score)>thrScore,]
-  print(res)
-
-  return(res)
 }

@@ -4,12 +4,16 @@
 \alias{generateReport}
 \title{generateReport}
 \usage{
-generateReport(outputFile = "n", resTable)
+generateReport(outputFile = "n", readsMatrix, resTable, CNVpos)
 }
 \arguments{
 \item{outputFile}{a path to the html output file}
 
+\item{readsMatrix}{the reads matrix}
+
 \item{resTable}{the table result of the CalculateScore() function}
+
+\item{CNVpos}{the CNVpos list result of the abSamples function}
 }
 \value{
 a html report

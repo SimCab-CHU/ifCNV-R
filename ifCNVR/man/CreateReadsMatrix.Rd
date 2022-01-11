@@ -4,14 +4,14 @@
 \alias{CreateReadsMatrix}
 \title{CreateReadsMatrix}
 \usage{
-CreateReadsMatrix(bamPath, bedFile, bedtools, outputFile = "n")
+CreateReadsMatrix(bamPath, bedFile, bedtoolsPath, outputFile = "n")
 }
 \arguments{
 \item{bamPath}{a path leading to the .bam and .bai files}
 
-\item{bedFile}{a path leading to the .bed file}
+\item{bedFile}{a path leading to the .bed file (Warning replace chrX by X in the position)}
 
-\item{bedtools}{the path leading to bedtools}
+\item{bedtoolsPath}{the path leading to bedtools}
 
 \item{outputFile}{(optional) a path leading to a text file}
 }
@@ -22,9 +22,9 @@ a reads matrix
 CreateReadsMatrix
 }
 \examples{
-bamPath <- "/Users/admin/Documents/GitHub/ifCNVR/ifCNVR/inst/extdata/"
-bed <- "/Users/admin/Documents/GitHub/ifCNVR/ifCNVR/inst/bedFile.bed"
-bedtools <- "/Users/admin/miniconda3/bin/bedtools"
+bamPath <- system.file("extdata/",package = "ifCNVR")
+bed <- system.file("bedFile.bed",package = "ifCNVR")
+bedtools <- 'n'
 readsMatrix <- CreateReadsMatrix(bamPath, bed, bedtools)
 
 }
