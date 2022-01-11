@@ -41,7 +41,7 @@ m.norm = rowMeans(data[,CNVpos$normSamples])
 soi = resTable$samples
 
 for (i in unique(soi)){
-  goi = resTable$RoI[res$samples==i]
+  goi = resTable$RoI[resTable$samples==i]
   for (j in goi){
     cr = rep("black",length(nam))
     cr[abs(log2(data[,i]/m.norm))>1] = "gray35"
