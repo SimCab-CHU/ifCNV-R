@@ -27,10 +27,10 @@ abTargets <- function(readsMatrix, abSamples, opt='regular'){
   q <- 0
   for (i in toTest){
     res.amp <- NULL
-    tmp = normReads[,i]/n.norm
+    tmp = log2(normReads[,i]/n.norm)
     iso.f <- isolation.forest(data.frame(tmp))
     pred.amp <- predict(iso.f, data.frame(tmp))
-    res.amp <- rownames(readsMatrix)[which(pred.amp>0.6)]
+    res.amp <- readsMatrix[,1][which(pred.amp>0.6)]
     if (sum(pred.amp>0.6)>0){
       q <- q + 1
       res[[q]] <- res.amp

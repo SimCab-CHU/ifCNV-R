@@ -17,10 +17,11 @@
 abSamples <- function(readsMatrix, conta="auto",q=0.99){
   options(warn=-1)
   data <- readsMatrix[,-1]
+  rownames(data) = readsMatrix$targets
 
-  qq.99 <- apply(data,2,function(x) quantile(x,q))
-  qq.01 <- apply(data,2,function(x) quantile(x,1-q))
-  m <- apply(data,2,mean)
+  qq.99 <- apply(data.matrix(data),2,function(x) quantile(x,q))
+  qq.01 <- apply(data.matrix(data),2,function(x) quantile(x,1-q))
+  m <- apply(data.matrix(data),2,mean)
 
   iso.f <- isolation.forest(data.frame(qq.99/m))
   pred.amp <- predict(iso.f, data.frame(qq.99/m))

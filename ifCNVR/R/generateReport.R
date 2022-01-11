@@ -9,7 +9,7 @@
 #'
 #' @examples
 #'generateReport()
-generateReport <- function(outputFile='n'){
+generateReport <- function(outputFile='n', resTable){
   if (outputFile!='n'){
     render("inst/template.Rmd",output_file = outputFile)
   } else {

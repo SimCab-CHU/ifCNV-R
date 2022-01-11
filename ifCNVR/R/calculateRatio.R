@@ -14,7 +14,7 @@ calculateRatio <- function(readsMatrix, abSamples, roi, soi){
 
   normReads <- normalizeReads(readsMatrix)
   n.norm <- rowMeans(normReads[,abSamples$normSamples])
-  names(n.norm) <- rownames(readsMatrix)
+  names(n.norm) <- rownames(normReads)
 
   tmp <- normReads[grepl(roi, rownames(normReads)),soi]
   f <- tmp/n.norm[grepl(roi, names(n.norm))]

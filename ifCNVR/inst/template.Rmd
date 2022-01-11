@@ -19,8 +19,6 @@ DT::datatable(resTable, rownames = FALSE)
 
 ## Plots
 
-You can also embed plots, for example:
-
 ```{r , echo=FALSE}
 
 
@@ -30,8 +28,8 @@ amp <- data[,1]
 
 data <- data[,-1]
 
-nam <- paste(do.call(rbind,strsplit(amp,split = "-"))[,1],do.call(rbind,strsplit(amp,split = "-"))[,2],sep="-")
-tmp <- do.call(rbind,strsplit(amp,split = "-"))[,1]
+nam <- paste(do.call(rbind,strsplit(amp,split = "_"))[,1],do.call(rbind,strsplit(amp,split = "_"))[,2],sep="-")
+tmp <- do.call(rbind,strsplit(amp,split = "_"))[,1]
 
 res <- resTable
 
@@ -44,7 +42,7 @@ for (i in 1:(length(tmp)-1)){
 
 samples <- CNVpos
 
-data.norm <- apply(data,2,function(x) x/median(x)) # fonction normalisation
+data.norm <- apply(data.matrix(data),2,function(x) x/median(x)) # fonction normalisation
 
 m.norm = rowMeans(data.norm[,samples$normSamples])
 
