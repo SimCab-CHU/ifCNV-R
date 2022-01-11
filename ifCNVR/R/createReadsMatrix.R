@@ -22,9 +22,6 @@ CreateReadsMatrix <- function(bamPath, bedFile, bedtoolsPath, outputFile='n'){
   if (sum(grepl(".bam$",bams))==0 & sum(grepl(".cram$",bams))==0){
     stop('bamPath must contain .bam or.cram files')
   }
-  print(bams)
-  print(sum(grepl(".bam$",bams)))
-  print(sum(grepl(".bai$",bams)))
 
   if (sum(grepl(".bam$",bams))!=sum(grepl(".bai$",bams))){
     stop('bamPath must contain .bam files and the correspondant index files (.bai)')
