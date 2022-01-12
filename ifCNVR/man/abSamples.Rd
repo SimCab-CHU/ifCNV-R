@@ -14,7 +14,7 @@ abSamples(readsMatrix, conta = "auto", q = 0.99)
 \item{q}{quantile}
 }
 \value{
-the aberant and normal samples
+the aberrant and normal samples
 }
 \description{
 abSamples

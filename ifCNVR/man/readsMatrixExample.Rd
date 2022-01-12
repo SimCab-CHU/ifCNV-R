@@ -16,9 +16,6 @@ A data frame with 11 rows and 6 variables:
 ...
 }
 }
-\source{
-\url{EDF R\&D}
-}
 \usage{
 readsMatrixExample
 }

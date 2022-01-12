@@ -12,6 +12,5 @@
 #'   \item{sample_5}{the number of reads in sample 5}
 #'   ...
 #' }
-#' @source \url{EDF R\&D}
 #'
 "readsMatrixExample"
