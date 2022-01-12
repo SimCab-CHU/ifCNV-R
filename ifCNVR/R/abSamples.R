@@ -4,7 +4,7 @@
 #' @param conta a parameter for the isotree function
 #' @param q quantile
 #'
-#' @return the aberant and normal samples
+#' @return the aberrant and normal samples
 #' @export
 #' @import data.table
 #' @import isotree
