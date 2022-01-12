@@ -1,13 +1,13 @@
 Package: ifCNVR
-Title: Isolation-Forest based CNV detection from NGS data
+Title: Isolation-Forest Based CNV Detection from NGS Data
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Simon",
            family = "Cabello-Aguilar",
            role = c("aut", "cre"),
            email = "s-cabelloaguilar@chu-montpellier.fr",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: ifCNVR is a R version of the python package ifCNV. It automatically finds CNV frome NGS data using a machine learning algorithm, Isolation forest.
+           comment = c(ORCID = "0000-0002-2904-7430"))
+Description: R version of the python package ifCNV. It automatically finds CNV from NGS data using a machine learning algorithm, Isolation forest.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
