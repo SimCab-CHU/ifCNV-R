@@ -22,7 +22,7 @@ pathToBedtools <- "/path/to/bedtools/"
 outputPath <- "/path/to/html/report.html"
 
 # After installing bedtools (https://bedtools.readthedocs.io/en/latest/content/installation.html), 
-# type which bedtools in your console to get the pathToBedtools
+# type `which bedtools` in your console to get the pathToBedtools
 
 # Create reads matrix
 readsMatrix <- CreateReadsMatrix(pathToBam, pathToBed, pathToBedtools)
