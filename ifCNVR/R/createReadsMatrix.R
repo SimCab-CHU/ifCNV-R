@@ -18,7 +18,7 @@
 CreateReadsMatrix <- function(bamPath, bedFile, bedtoolsPath, outputFile='n', verbose=TRUE){
  # suppressWarnings()
   bams <- dir(bamPath)
-  bed <- fread(bedFile, data.table = F)
+  bed <- fread(bedFile, data.table = FALSE, header = FALSE)
 
   if (sum(grepl(".bam$",bams))==0 & sum(grepl(".cram$",bams))==0){
     stop('bamPath must contain .bam or.cram files')

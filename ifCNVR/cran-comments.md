@@ -42,4 +42,23 @@ To avoid unnecessary warning output you could use e.g. suppressWarnings().
 
 Please fix and resubmit.
 
+## R-hub builder
+
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: 'Simon Cabello-Aguilar <s-cabelloaguilar@chu-montpellier.fr>'
+
+
+Possibly misspelled words in DESCRIPTION:
+  CNV (11:60)
+  Cabello (11:215)
+New submission
+
+* checking for detritus in the temp directory ... NOTE
+Found the following files/directories:
+  'lastMiKTeXException'
+
+
+
+
+
 * This is a new release.
