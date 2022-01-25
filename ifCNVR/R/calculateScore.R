@@ -14,12 +14,16 @@
 #' abS <- abSamples(readsMatrixExample)
 #' abT <- abTargets(readsMatrixExample,abSamples(readsMatrixExample))
 #' calculateScore(readsMatrixExample, abS, abT, sep="-")
-calculateScore <- function(readsMatrix, abSamples, abTargets, roi="Gene-Exon", sep="-", thrScore=7){
+calculateScore <- function(readsMatrix, abSamples, abTargets, roi="Gene", sep="-", thrScore=7){
   N <- nrow(readsMatrix)
 
   bed.sub <- readsMatrix[,1]
 
   All <- do.call(rbind, strsplit(bed.sub,split = sep))
+
+  if (sum(grepl(sep,bed.sub))==0){
+    stop("The `sep` parameter must be present in the forth column of your bed file (default: sep=\"-\")")
+  }
 
   genes <- All[,1]
   exons <- All[,2]

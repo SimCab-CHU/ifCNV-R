@@ -8,7 +8,7 @@ calculateScore(
   readsMatrix,
   abSamples,
   abTargets,
-  roi = "Gene-Exon",
+  roi = "Gene",
   sep = "-",
   thrScore = 7
 )

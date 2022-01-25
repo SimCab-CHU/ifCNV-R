@@ -61,4 +61,3 @@ Found the following files/directories:
 
 
 
-* This is a new release.

@@ -16,7 +16,7 @@
 #'readsMatrix <- CreateReadsMatrix(bamPath, bed, bedtools)
 #'
 CreateReadsMatrix <- function(bamPath, bedFile, bedtoolsPath, outputFile='n', verbose=TRUE){
- # suppressWarnings()
+
   bams <- dir(bamPath)
   bed <- fread(bedFile, data.table = FALSE, header = FALSE)
 

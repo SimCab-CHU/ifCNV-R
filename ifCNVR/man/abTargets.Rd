@@ -4,7 +4,7 @@
 \alias{abTargets}
 \title{abTargets}
 \usage{
-abTargets(readsMatrix, abSamples, opt = "regular")
+abTargets(readsMatrix, abSamples, opt = "regular", pred = 0.6)
 }
 \arguments{
 \item{readsMatrix}{the reads matrix}
@@ -12,6 +12,8 @@ abTargets(readsMatrix, abSamples, opt = "regular")
 \item{abSamples}{the abSamples list result of the abSamples function}
 
 \item{opt}{"regular" or "extensive" a parameter}
+
+\item{pred}{a threshold on the isolation forest outlier prediction (range=[0,1[)}
 }
 \value{
 a list of dataframes of the targets tagged as outliers
