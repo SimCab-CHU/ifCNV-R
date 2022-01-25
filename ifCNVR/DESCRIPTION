@@ -1,5 +1,5 @@
 Package: ifCNVR
-Title: Isolation-Forest Based CNV Detection from NGS Data
+Title: Isolation-Forest Based 'CNV' Detection from 'NGS' Data
 Version: 0.1.0
 Authors@R: 
     person(given = "Simon",
@@ -8,7 +8,7 @@ Authors@R:
            email = "s-cabelloaguilar@chu-montpellier.fr",
            comment = c(ORCID = "0000-0002-2904-7430"))
 URL: https://github.com/SimCab-CHU/ifCNVR
-Description: R version of the python package ifCNV. It automatically finds CNV from NGS data using a machine learning algorithm, Isolation forest.
+Description: Automatically detects Copy Number Variations (CNV) from Next Generation Sequencing data using a machine learning algorithm, Isolation forest. More details about the method can be found in the paper by Cabello-Aguilar (2022) <doi:10.1101/2022.01.03.474771>.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

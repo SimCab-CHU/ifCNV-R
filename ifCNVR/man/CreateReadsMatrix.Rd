@@ -4,7 +4,13 @@
 \alias{CreateReadsMatrix}
 \title{CreateReadsMatrix}
 \usage{
-CreateReadsMatrix(bamPath, bedFile, bedtoolsPath, outputFile = "n")
+CreateReadsMatrix(
+  bamPath,
+  bedFile,
+  bedtoolsPath,
+  outputFile = "n",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{bamPath}{a path leading to the .bam and .bai files}
@@ -14,6 +20,8 @@ CreateReadsMatrix(bamPath, bedFile, bedtoolsPath, outputFile = "n")
 \item{bedtoolsPath}{the path leading to bedtools}
 
 \item{outputFile}{(optional) a path leading to a text file}
+
+\item{verbose}{a boolean}
 }
 \value{
 a reads matrix

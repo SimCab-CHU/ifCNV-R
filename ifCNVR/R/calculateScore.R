@@ -14,8 +14,9 @@
 #' abS <- abSamples(readsMatrixExample)
 #' abT <- abTargets(readsMatrixExample,abSamples(readsMatrixExample))
 #' calculateScore(readsMatrixExample, abS, abT, sep="-")
-calculateScore <- function(readsMatrix, abSamples, abTargets, roi="Gene", sep="_", thrScore=7){
+calculateScore <- function(readsMatrix, abSamples, abTargets, roi="Gene-Exon", sep="-", thrScore=7){
   N <- nrow(readsMatrix)
+
   bed.sub <- readsMatrix[,1]
 
   All <- do.call(rbind, strsplit(bed.sub,split = sep))
@@ -67,7 +68,6 @@ calculateScore <- function(readsMatrix, abSamples, abTargets, roi="Gene", sep="_
     res$Ratio <- round(res$Ratio,2)
     res$Score <- round(res$Score,2)
     res <- res[as.numeric(res$Score)>thrScore,]
-    print(res)
 
     return(res)
   } else {

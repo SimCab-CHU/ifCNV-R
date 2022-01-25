@@ -4,6 +4,7 @@
 #' @param bedFile a path leading to the .bed file (Warning replace chrX by X in the position)
 #' @param outputFile (optional) a path leading to a text file
 #' @param bedtoolsPath the path leading to bedtools
+#' @param verbose a boolean
 #'
 #' @return a reads matrix
 #' @export
@@ -14,8 +15,8 @@
 #'bedtools <- 'n'
 #'readsMatrix <- CreateReadsMatrix(bamPath, bed, bedtools)
 #'
-CreateReadsMatrix <- function(bamPath, bedFile, bedtoolsPath, outputFile='n'){
-  options(warn=-1)
+CreateReadsMatrix <- function(bamPath, bedFile, bedtoolsPath, outputFile='n', verbose=TRUE){
+ # suppressWarnings()
   bams <- dir(bamPath)
   bed <- fread(bedFile, data.table = F)
 
@@ -26,7 +27,10 @@ CreateReadsMatrix <- function(bamPath, bedFile, bedtoolsPath, outputFile='n'){
   if (sum(grepl(".bam$",bams))!=sum(grepl(".bai$",bams))){
     stop('bamPath must contain .bam files and the correspondant index files (.bai)')
   }
-  cat("Creating Reads Matrix\n")
+  if (verbose){
+    cat("Creating Reads Matrix\n")
+  }
+
   if (bedtoolsPath!='n'){
     if (grepl("bedtools", bedtoolsPath)){
       readsMatrix <- system(paste(bedtoolsPath, "multicov -bed", bedFile, paste0("-bams ", bamPath, "/", "*.bam")),intern=TRUE)
@@ -45,6 +49,9 @@ CreateReadsMatrix <- function(bamPath, bedFile, bedtoolsPath, outputFile='n'){
   if (outputFile!='n'){
     fwrite(readsMatrix,outputFile,sep="\t")
   }
-  cat("Done\n")
+  if (verbose){
+    cat("Done\n")
+  }
+
   return(readsMatrix)
 }
