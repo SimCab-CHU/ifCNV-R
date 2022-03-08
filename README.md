@@ -2,11 +2,11 @@
  ifCNV R package
  
  # Installation
+ The package is available on CRAN. To install type:
  
- To install ifCNVR type:
  
  `
-devtools::install_github("https://github.com/SimCab-CHU/ifCNVR",subdir = "ifCNVR")
+install.packages("ifCNVR")
 `
 
 # Example
