@@ -17,7 +17,7 @@
 abSamples <- function(readsMatrix, conta="auto",q=0.99){
   options(warn=-1)
   data <- readsMatrix[,-1]
-  rownames(data) = readsMatrix$targets
+  rownames(data) <- readsMatrix$targets
 
   qq.99 <- apply(data.matrix(data),2,function(x) quantile(x,q))
   qq.01 <- apply(data.matrix(data),2,function(x) quantile(x,1-q))
