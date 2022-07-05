@@ -42,5 +42,6 @@ generateReport(outputFile = outputPath, readsMatrix, resTable, CNVpos)
 ```
 
 
+# User's Guide
 
-
+A html User's Guide with more details is also available
