@@ -1,4 +1,4 @@
-# ifCNVR
+# ifCNV-R
  ifCNV R package
  
  # Installation
